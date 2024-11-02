@@ -4,23 +4,23 @@ import { apiLogin } from '../api';
 
 export default {
   setup() {
-    const formData = ref({
+    const formData= ref({
       username: '',
       password: '',
     });
+
+    const showPassword = ref(false);
+
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
+    };
 
     const handleSubmit = async () => {
       try {
         const response = await apiLogin(formData.value);
 
         console.log('Sign In Successful:', response);
-        // if (response.ok) {
-          // Store the token or user info in local storage or Vuex
-          // localStorage.setItem('token', data.token);
-        // } else {
-        //   const error = await response.json();
-        //   console.error('Sign In Error:', error);
-        // }
+      
       } catch (error) {
         console.error('Network Error:', error);
       }
@@ -28,6 +28,8 @@ export default {
 
     return {
       formData,
+      showPassword,
+      togglePasswordVisibility,
       handleSubmit,
     };
   },
@@ -56,11 +58,17 @@ export default {
           <input
             v-model="formData.password"
             placeholder="Password"
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
             class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200"
             required
             autocomplete="current-password"
           />
+          <span 
+            @click="togglePasswordVisibility"
+            class="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+          >
+            <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </span>
         </div>
         <button
           type="submit"
@@ -78,3 +86,6 @@ export default {
     </div>
   </div>
 </template>
+<style>
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+</style>
