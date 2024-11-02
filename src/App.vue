@@ -1,9 +1,7 @@
 <script setup>
-import Login from './views/Login.vue';
-import Register from './views/Register.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <Login />
-  <Register />
+  <RouterView />
 </template>

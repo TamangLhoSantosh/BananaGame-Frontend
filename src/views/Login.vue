@@ -1,5 +1,7 @@
 <script>
 import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
 import { apiLogin } from '../api';
 
 export default {
@@ -66,10 +68,10 @@ export default {
         </button>
         <p class="text-center mt-2 text-[#008080]">
           Don't have an account?
-          <strong
+          <RouterLink to="/register"
             class="font-semibold hover:text-[#FFD700] hover:scale-105 transition-transform duration-200 cursor-pointer">
             Sign Up
-          </strong>
+          </RouterLink>
         </p>
       </form>
     </div>
