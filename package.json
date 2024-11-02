@@ -12,7 +12,8 @@
     "axios": "^1.7.7",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
-    "vue-spinner": "^1.0.4"
+    "vue-spinner": "^1.0.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
