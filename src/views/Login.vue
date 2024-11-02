@@ -4,7 +4,7 @@ import { apiLogin } from '../api';
 
 export default {
   setup() {
-    const formData= ref({
+    const formData = ref({
       username: '',
       password: '',
     });
@@ -20,7 +20,7 @@ export default {
         const response = await apiLogin(formData.value);
 
         console.log('Sign In Successful:', response);
-      
+
       } catch (error) {
         console.error('Network Error:', error);
       }
@@ -48,37 +48,26 @@ export default {
         </p>
       </div>
       <form class="flex flex-col p-3 gap-6 w-full" @submit.prevent="handleSubmit">
-        <input
-          v-model="formData.username"
-          placeholder="Username or Email"
+        <input v-model="formData.username" placeholder="Username or Email"
           class="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200"
-          required
-        />
+          required />
         <div class="relative w-full">
-          <input
-            v-model="formData.password"
-            placeholder="Password"
-            :type="showPassword ? 'text' : 'password'"
+          <input v-model="formData.password" placeholder="Password" :type="showPassword ? 'text' : 'password'"
             class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200"
-            required
-            autocomplete="current-password"
-          />
-          <span 
-            @click="togglePasswordVisibility"
-            class="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
-          >
+            required autocomplete="current-password" />
+          <span @click="togglePasswordVisibility"
+            class="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500 hover:text-gray-700">
             <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
           </span>
         </div>
-        <button
-          type="submit"
-          class="w-full self-center md:w-28 bg-[#FFD700] mt-[10px] p-2 rounded-lg shadow-md hover:bg-[#FFC107] transition duration-300"
-        >
+        <button type="submit"
+          class="w-full self-center md:w-28 bg-[#FFD700] mt-[10px] p-2 rounded-lg shadow-md hover:bg-[#008080] hover:text-white transition duration-300">
           Sign In
         </button>
         <p class="text-center mt-2 text-[#008080]">
-          Don't have an account? 
-          <strong class="font-semibold hover:text-[#FFD700] hover:scale-105 transition-transform duration-200 cursor-pointer">
+          Don't have an account?
+          <strong
+            class="font-semibold hover:text-[#FFD700] hover:scale-105 transition-transform duration-200 cursor-pointer">
             Sign Up
           </strong>
         </p>

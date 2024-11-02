@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { ref } from 'vue';
 import { apiRegister } from '../api';
 
@@ -15,8 +15,6 @@ export default {
             confirmPassword: ''
         });
 
-        const errors = ref<{ [key: string]: string }>({});
-
         const handleSubmit = async () => {
             try {
                 if (formData.value.password !== formData.value.confirmPassword) {
@@ -31,7 +29,6 @@ export default {
 
         return {
             formData,
-            errors,
             handleSubmit,
         };
     },
