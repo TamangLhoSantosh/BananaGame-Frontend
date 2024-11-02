@@ -1,45 +1,41 @@
-<script>
+<script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
 import { apiLogin } from '../api';
 
-export default {
-  setup() {
-    const formData = ref({
-      username: '',
-      password: '',
-    });
+const formData = ref({
+  username: '',
+  password: '',
+});
 
-    const showPassword = ref(false);
+const showPassword = ref(false);
+const isLoading = ref(false);
 
-    const togglePasswordVisibility = () => {
-      showPassword.value = !showPassword.value;
-    };
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
 
-    const handleSubmit = async () => {
-      try {
-        const response = await apiLogin(formData.value);
-
-        console.log('Sign In Successful:', response);
-
-      } catch (error) {
-        console.error('Network Error:', error);
-      }
-    };
-
-    return {
-      formData,
-      showPassword,
-      togglePasswordVisibility,
-      handleSubmit,
-    };
-  },
+const handleSubmit = async () => {
+  try {
+    isLoading.value = true;
+    const response = await apiLogin(formData.value);
+    console.log('Sign In Successful:', response);
+  } catch (error) {
+    console.error('Network Error:', error);
+  }
+  finally {
+    isLoading.value = false;
+  }
 };
 </script>
 
 <template>
   <div class="bg-[#333333] flex justify-center items-center min-h-screen">
+    <div v-if="isLoading" class="text-center" id="loader">
+      <PulseLoader />
+    </div>
     <div class="bg-white max-w-md w-[90%] flex flex-col gap-5 rounded-lg shadow-lg p-8">
       <div class="flex flex-col items-center p-4">
         <h1 class="text-4xl font-bold text-[#008080] w-full p-3 text-center">

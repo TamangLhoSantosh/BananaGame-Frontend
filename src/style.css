@@ -7,3 +7,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+#loader {
+  position: absolute;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}

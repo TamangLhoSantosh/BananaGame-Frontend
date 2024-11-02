@@ -1,44 +1,43 @@
-<script>
+<script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
 import { apiRegister } from '../api';
 
-export default {
-    name: 'SignupComponent',
-    setup() {
-        const formData = ref({
-            username: '',
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-        });
+const formData = ref({
+    username: '',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+});
 
-        const handleSubmit = async () => {
-            try {
-                if (formData.value.password !== formData.value.confirmPassword) {
-                    return;
-                }
-                const response = await apiRegister(formData.value);
-                console.log('Sign Up Successful:', response);
-            } catch (error) {
-                console.error('An error occurred:', error);
-            }
-        };
+const isLoading = ref(false);
 
-        return {
-            formData,
-            handleSubmit,
-        };
-    },
+const handleSubmit = async () => {
+    try {
+        if (formData.value.password !== formData.value.confirmPassword) {
+            return;
+        }
+        isLoading.value = true;
+        const response = await apiRegister(formData.value);
+        console.log('Sign Up Successful:', response);
+    } catch (error) {
+        console.error('An error occurred:', error);
+    } finally {
+        isLoading.value = false;
+    }
 };
 </script>
 
 <template>
     <div class="bg-[#333333] flex justify-center items-center min-h-screen">
+        <div v-if="isLoading" class="text-center" id="loader">
+            <PulseLoader />
+        </div>
         <div class="bg-white max-w-xl w-[90%] flex flex-col gap-5 rounded-lg shadow-lg p-8">
             <div class="flex flex-col items-center p-4">
                 <h1 class="text-4xl font-bold text-[#008080] w-full p-3 text-center">
