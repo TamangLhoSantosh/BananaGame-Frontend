@@ -3,8 +3,9 @@ import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import NotFound from "../views/NotFound.vue";
 
+// Create a new router instance
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL), // History mode
   routes: [
     {
       path: "/login",

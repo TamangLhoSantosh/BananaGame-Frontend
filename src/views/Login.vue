@@ -1,29 +1,47 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import { useToast } from 'vue-toastification';
 
 import { apiLogin } from '../api';
+import router from '../router';
 
+// State to store form data
 const formData = ref({
   username: '',
   password: '',
 });
 
+// State to toggle password visibility
 const showPassword = ref(false);
+
+// State to store loading state
 const isLoading = ref(false);
 
+// Function to toggle password visibility
 const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value;
 };
 
+// Toast instance
+const toast = useToast();
+
+// Function to handle form submission
 const handleSubmit = async () => {
   try {
     isLoading.value = true;
     const response = await apiLogin(formData.value);
-    console.log('Sign In Successful:', response);
-  } catch (error) {
-    console.error('Network Error:', error);
+    toast.success('Sign In Successful');
+    localStorage.setItem('token', response.data);
+    router.push('/');
+  } catch (error: any) {
+    console.log(error);
+    if (error.response && error.response.data) {
+      toast.error(error.response.data);
+    } else {
+      toast.error('An error occurred');
+    }
   }
   finally {
     isLoading.value = false;
@@ -45,10 +63,13 @@ const handleSubmit = async () => {
           Sign in to stay connected
         </p>
       </div>
+      <!-- Form -->
       <form class="flex flex-col p-3 gap-6 w-full" @submit.prevent="handleSubmit">
+        <!-- Username -->
         <input v-model="formData.username" placeholder="Username or Email"
           class="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200"
           required />
+        <!-- Password -->
         <div class="relative w-full">
           <input v-model="formData.password" placeholder="Password" :type="showPassword ? 'text' : 'password'"
             class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200"
