@@ -52,3 +52,16 @@ export const apiRegister = async ({
     throw error;
   }
 };
+
+export const apiGame = async (token: String | null) => {
+  try {
+    const response = await apiClient.get("/game", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
