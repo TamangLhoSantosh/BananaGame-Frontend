@@ -29,9 +29,9 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Handle unauthorized errors (e.g., redirect to login)
-      // For example:
-      window.location.href = "/login";
+      // Handle unauthorized errors
+      localStorage.removeItem("token"); // Remove token from localStorage
+      window.location.href = "/login"; // Redirect to login page
     }
     return Promise.reject(error); // Reject the promise in case of an error
   }
