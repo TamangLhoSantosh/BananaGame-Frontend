@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+
 import GameComponent from '../components/GameComponent.vue';
 import HistoryComponent from '../components/HistoryComponent.vue';
 

@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="bg-white px-8 max-h-[520px] rounded-lg shadow-lg overflow-y-auto scrollbar-hidden">
+    <div class="bg-white px-8 max-h-[570px] rounded-lg shadow-lg overflow-y-auto scrollbar-hidden">
         <p class="text-center py-8 text-2xl text-[#008080] sticky top-0 bg-white">History</p>
         <ul class="pb-2">
             <li v-for="item in data" :key="item.id" class="border-b border-gray-300 py-4">
