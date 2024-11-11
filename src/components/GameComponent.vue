@@ -81,11 +81,11 @@ const checksolution = () => {
 
         <div class="flex gap-4">
             <button @click="checksolution" @keydown="checksolution"
-                class="bg-[#FFD700] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#ffe83a] transition duration-200">
+                class="bg-[#FFD700] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#fff23a] hover:text-black transition duration-200">
                 Check
             </button>
             <button @click="getGame"
-                class="bg-[#FFD700] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#ffe83a] transition duration-200">
+                class="bg-[#FFD700] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#fff23a] hover:text-black transition duration-200">
                 Next
             </button>
         </div>

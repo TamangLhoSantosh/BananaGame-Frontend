@@ -53,9 +53,24 @@ export const apiRegister = async ({
   }
 };
 
+// API call to call the get game
 export const apiGame = async () => {
   try {
     const response = await apiClient.get("/game");
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// API call to call the game history of the player
+export const apiGameHistory = async () => {
+  try {
+    const response = await apiClient.get("/game-history", {
+      params: {
+        playerId: localStorage.getItem("playerId"),
+      },
+    });
     return response;
   } catch (error) {
     throw error;
