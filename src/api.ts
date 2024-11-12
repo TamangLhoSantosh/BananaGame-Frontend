@@ -29,7 +29,7 @@ interface RegisterData {
   password: String;
 }
 
-// API call to register endpoint
+// API to register endpoint
 export const apiRegister = async ({
   username,
   firstName,
@@ -53,7 +53,7 @@ export const apiRegister = async ({
   }
 };
 
-// API call to call the get game
+// API to call get game
 export const apiGame = async () => {
   try {
     const response = await apiClient.get("/game");
@@ -63,13 +63,28 @@ export const apiGame = async () => {
   }
 };
 
-// API call to call the game history of the player
+// API to call the game history of the player
 export const apiGameHistory = async () => {
   try {
     const response = await apiClient.get("/game-history", {
       params: {
         playerId: localStorage.getItem("playerId"),
       },
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// API to create new history
+export const apiCreateHistory = async (status: boolean) => {
+  try {
+    const playerId = localStorage.getItem("playerId");
+    console.log(playerId);
+    const response = await apiClient.post("/game-history", {
+      game_status: status,
+      playerId: playerId,
     });
     return response;
   } catch (error) {

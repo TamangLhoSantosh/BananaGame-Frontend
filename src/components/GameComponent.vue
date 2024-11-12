@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, defineEmits, watch } from 'vue';
-import { apiGame } from '../api';
+import { apiCreateHistory, apiGame } from '../api';
 
 // Emit states
 const emit = defineEmits<{
@@ -70,7 +70,7 @@ const checksolution = async () => {
         emit('update:showMessage', true); // Emit show message state
 
         // Post to API when the answer is correct
-        await postResultToAPI("correct");
+        await postResultToAPI(true);
     } else {
         feedback.value = "Please try again";
 
@@ -84,15 +84,14 @@ const checksolution = async () => {
             emit('update:showMessage', true); // Emit show message state
 
             // Post to API when lives are zero
-            await postResultToAPI("gameOver");
+            await postResultToAPI(false);
         }
     }
 }
 
 // Post result to API
-const postResultToAPI = async (status: string) => {
-    console.log(status)
-
+const postResultToAPI = async (status: boolean) => {
+    await apiCreateHistory(status);
 }
 </script>
 

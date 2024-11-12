@@ -2,10 +2,12 @@
 import { ref, onMounted } from 'vue';
 import { apiGameHistory } from '../api';
 
+// Interface for History
+interface History {
+    id: number, game_status: boolean, playedAt: string, playerId: number
+}
 // State to store the game history data
-const data = ref([
-    { id: 0, game_status: false, playedAt: "2021-10-01T12:00:00Z", playerId: 0 }
-]);
+const data = ref<History[]>([]);
 
 // Fetch the game history data from the API
 const getHistory = async () => {
@@ -37,6 +39,7 @@ onMounted(() => {
     <div class="bg-white px-8 max-h-[570px] rounded-lg shadow-lg overflow-y-auto scrollbar-hidden min-w-fit">
         <p class="text-center font-bold pt-8 pb-4 text-2xl text-[#008080] sticky top-0 bg-white">History</p>
         <ul class="pb-2">
+            <li v-if="data">You have not played yet.</li>
             <li v-for="item in data" :key="item.id" class="border-b border-gray-300 py-4">
                 <p class="text-[#FFD700]">Game Status: <span class="text-[#008080]">{{ item.game_status === true ? 'Won'
                     : 'Lost' }}</span></p>
