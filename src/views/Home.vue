@@ -12,6 +12,7 @@ const showMessage = ref(false);
 const message = ref("");
 const messageType = ref<"success" | "error">("success");
 const startGame = ref(false)
+const fetchHistory = ref(false)
 </script>
 
 <template>
@@ -29,10 +30,11 @@ const startGame = ref(false)
             <!-- Game content container with styling -->
             <GameComponent :startGame="startGame" @update:isLoading="isGameLoading = $event"
                 @update:showMessage="showMessage = $event" @update:message="message = $event"
-                @update:messageType="messageType = $event" @update:startGame="startGame = $event" />
+                @update:messageType="messageType = $event" @update:startGame="startGame = $event"
+                @update:fetchHistory="fetchHistory = $event" />
 
             <!-- History component to display game history -->
-            <HistoryComponent />
+            <HistoryComponent :fetchHistory="fetchHistory" />
         </div>
     </div>
 </template>

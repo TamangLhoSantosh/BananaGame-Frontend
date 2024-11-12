@@ -9,6 +9,7 @@ const emit = defineEmits<{
     (event: 'update:message', value: string): void;
     (event: 'update:messageType', value: "success" | "error"): void;
     (event: 'update:startGame', value: boolean): void;
+    (event: 'update:fetchHistory', value: boolean): void;
 }>();
 
 // Props
@@ -29,6 +30,7 @@ watch(() => props.startGame, (newVal) => {
     }
 });
 
+// Get game data
 const getGame = async () => {
     try {
         userAnswer.value = "";
@@ -92,6 +94,7 @@ const checksolution = async () => {
 // Post result to API
 const postResultToAPI = async (status: boolean) => {
     await apiCreateHistory(status);
+    emit('update:fetchHistory', true);
 }
 </script>
 

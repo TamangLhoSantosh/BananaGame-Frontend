@@ -9,10 +9,16 @@ interface History {
 // State to store the game history data
 const data = ref<History[]>([]);
 
+// Emit states
+const emit = defineEmits<{
+    (event: 'update:fetchHistory', value: boolean): void;
+}>();
+
 // Fetch the game history data from the API
 const getHistory = async () => {
     const response = await apiGameHistory();
-    if (response.status === 200) data.value = response.data
+    if (response.status === 200) data.value = response.data;
+    emit('update:fetchHistory', false);
 }
 
 // Function to format the date in a readable format
