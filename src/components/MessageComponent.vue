@@ -1,3 +1,5 @@
+<!-- Some elemnets used here is a product of ChatGPT -->
+
 <script setup lang="ts">
 import { computed } from 'vue';
 

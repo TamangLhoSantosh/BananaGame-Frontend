@@ -1,3 +1,5 @@
+<!-- Some elemnets used here is a product of ChatGPT -->
+
 <script setup lang="ts">
 import { onMounted, ref, defineEmits, watch } from 'vue';
 import { apiCreateHistory, apiGame } from '../api';

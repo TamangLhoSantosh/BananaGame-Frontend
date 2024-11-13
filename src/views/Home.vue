@@ -1,3 +1,5 @@
+<!-- Some elemnets used here is a product of ChatGPT -->
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
