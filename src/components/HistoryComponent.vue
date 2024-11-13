@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { apiGameHistory } from '../api';
+
+// Props
+const props = defineProps<{
+    fetchHistory: boolean;
+}>();
 
 // Interface for History
 interface History {
     id: number, game_status: boolean, playedAt: string, playerId: number
 }
+
 // State to store the game history data
 const data = ref<History[]>([]);
 
@@ -13,6 +19,13 @@ const data = ref<History[]>([]);
 const emit = defineEmits<{
     (event: 'update:fetchHistory', value: boolean): void;
 }>();
+
+// Watch for changes to fetchHistory prop and fetch game history data when true
+watch(() => props.fetchHistory, (newVal) => {
+    if (newVal) {
+        getHistory();
+    }
+});
 
 // Fetch the game history data from the API
 const getHistory = async () => {
@@ -42,10 +55,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="bg-white px-8 max-h-[570px] rounded-lg shadow-lg overflow-y-auto scrollbar-hidden min-w-fit">
+    <div class="bg-white px-8 max-h-[500px] rounded-lg shadow-lg overflow-y-auto scrollbar-hidden min-w-fit">
         <p class="text-center font-bold pt-8 pb-4 text-2xl text-[#008080] sticky top-0 bg-white">History</p>
         <ul class="pb-2">
-            <li v-if="data">You have not played yet.</li>
+            <li v-if="data.length === 0" class="text-center text-[#FFD700]">No game history found</li>
             <li v-for="item in data" :key="item.id" class="border-b border-gray-300 py-4">
                 <p class="text-[#FFD700]">Game Status: <span class="text-[#008080]">{{ item.game_status === true ? 'Won'
                     : 'Lost' }}</span></p>

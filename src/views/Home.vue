@@ -34,7 +34,7 @@ const fetchHistory = ref(false)
                 @update:fetchHistory="fetchHistory = $event" />
 
             <!-- History component to display game history -->
-            <HistoryComponent :fetchHistory="fetchHistory" />
+            <HistoryComponent :fetchHistory="fetchHistory" @update:fetchHistory="fetchHistory = $event" />
         </div>
     </div>
 </template>

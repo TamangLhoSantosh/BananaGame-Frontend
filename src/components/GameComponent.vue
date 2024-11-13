@@ -101,8 +101,6 @@ const postResultToAPI = async (status: boolean) => {
 
 <template>
     <div class="bg-white max-w-lg w-full flex flex-col items-center gap-6 p-8 rounded-lg shadow-lg">
-        <!-- Title of the game -->
-        <p class="text-5xl font-bold text-[#FFD700]"> Banana Game </p>
 
         <!-- Display remaining lives -->
         <p class="text-xl font-semibold text-gray-700">Lives: {{ lives }}</p>
