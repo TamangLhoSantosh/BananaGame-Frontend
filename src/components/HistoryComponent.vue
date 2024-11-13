@@ -62,9 +62,14 @@ onMounted(() => {
         <ul class="pb-2">
             <li v-if="data.length === 0" class="text-center text-[#FFD700]">No game history found</li>
             <li v-for="item in data" :key="item.id" class="border-b border-gray-300 py-4">
-                <p class="text-[#FFD700]">Game Status: <span :class="[color]">{{ item.game_status === true ? 'Won'
-                    : 'Lost' }}</span></p>
-                <p class="text-[#FFD700]">Played At: <span class="text-[#008080]">{{ formatDate(item.playedAt) }}</span>
+                <p class="text-[#FFD700]">Game Status: <span
+                        :class="item.game_status ? 'text-[#008080]' : 'text-[#FF0000]'">
+                        {{ item.game_status ? 'Won' : 'Lost' }}
+                    </span>
+                </p>
+                <p class="text-[#FFD700]">Played At: <span
+                        :class="item.game_status ? 'text-[#008080]' : 'text-[#FF0000]'">{{ formatDate(item.playedAt)
+                        }}</span>
                 </p>
             </li>
         </ul>
