@@ -33,7 +33,8 @@ const handleSubmit = async () => {
     isLoading.value = true;
     const response = await apiLogin(formData.value);
     toast.success('Sign In Successful');
-    localStorage.setItem('token', response.data);
+    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('playerId', response.data.id);
     router.push('/');
   } catch (error: any) {
     console.log(error);
