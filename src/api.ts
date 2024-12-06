@@ -25,7 +25,6 @@ interface RegisterData {
   firstName: String;
   middleName: String;
   lastName: String;
-  email: String;
   password: String;
 }
 
@@ -35,7 +34,6 @@ export const apiRegister = async ({
   firstName,
   middleName,
   lastName,
-  email,
   password,
 }: RegisterData) => {
   try {
@@ -44,7 +42,6 @@ export const apiRegister = async ({
       firstName,
       middleName,
       lastName,
-      email,
       password,
     });
     return response;

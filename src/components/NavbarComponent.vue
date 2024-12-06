@@ -37,7 +37,7 @@ const logout = () => {
 </script>
 
 <template>
-    <div :class="['bg-[#008080]', 'w-full', 'py-2', 'flex', 'items-center', spacing, 'sticky', 'top-0']">
+    <div :class="['bg-[#008080]', 'w-full', 'py-2', 'flex', 'items-center', spacing, 'sticky', 'top-0', 'z-50']">
         <span v-if="token"></span>
         <span class="text-[#FFD700] font-bold text-2xl">Banana Game</span>
         <span v-if="token" class="bg-white px-4 py-2 me-2 rounded-3xl hover:cursor-pointer"

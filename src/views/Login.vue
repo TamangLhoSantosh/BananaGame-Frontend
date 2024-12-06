@@ -34,7 +34,7 @@ const handleSubmit = async () => {
     const response = await apiLogin(formData.value);
     toast.success('Sign In Successful');
     localStorage.setItem('token', response.data.token);
-    localStorage.setItem('playerId', response.data.id);
+    localStorage.setItem('playerId', response.data.id); ``
     router.push('/');
   } catch (error: any) {
     console.log(error);
@@ -67,7 +67,7 @@ const handleSubmit = async () => {
       <!-- Form -->
       <form class="flex flex-col p-3 gap-6 w-full" @submit.prevent="handleSubmit">
         <!-- Username -->
-        <input v-model="formData.username" placeholder="Username or Email"
+        <input v-model="formData.username" placeholder="Username"
           class="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200"
           required />
         <!-- Password -->

@@ -14,7 +14,6 @@ const formData = ref({
     firstName: '',
     middleName: '',
     lastName: '',
-    email: '',
     password: '',
     confirmPassword: ''
 });
@@ -25,7 +24,6 @@ const formSchema = z.object({
     firstName: z.string().min(1, "First name cannot be empty"),
     middleName: z.string(),
     lastName: z.string().min(1, "Last name cannot be empty"),
-    email: z.string().email("Invalid email address"),
     password: z.string().min(8, "Password must be at least 8 characters long"),
     confirmPassword: z.string().min(8, "Password must be at least 8 characters long")
 }).refine(data => data.password === data.confirmPassword, {
@@ -67,7 +65,6 @@ const handleSubmit = async () => {
         if (!validation()) return;
         isLoading.value = true;
         const response = await apiRegister(formData.value);
-        console.log(response);
         toast.success('Sign Up Successful');
         router.push('/login');
     } catch (error: any) {
@@ -128,14 +125,6 @@ const handleSubmit = async () => {
                                 v-for="error in errors?.username?._errors">{{
                                     error }}</span>
                         </div>
-                    </div>
-                </div>
-                <!-- Email -->
-                <div>
-                    <input v-model="formData.email" placeholder="Email"
-                        class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008080] transition duration-200" />
-                    <div v-if="errors?.email" class="text-red-600"> <span v-for="error in errors?.email?._errors">{{
-                        error }}</span>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
