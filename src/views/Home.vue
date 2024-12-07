@@ -1,3 +1,5 @@
+<!-- Some elemnets used here is a product of ChatGPT -->
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
@@ -34,7 +36,7 @@ const fetchHistory = ref(false)
                 @update:fetchHistory="fetchHistory = $event" />
 
             <!-- History component to display game history -->
-            <HistoryComponent :fetchHistory="fetchHistory" />
+            <HistoryComponent :fetchHistory="fetchHistory" @update:fetchHistory="fetchHistory = $event" />
         </div>
     </div>
 </template>
