@@ -1,5 +1,11 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import router from "./router";
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
+import App from "./App.vue";
+import "./style.css";
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.use(router); // Use the router
+app.use(Toast); // Use the Toast plugin
+app.mount("#app");
